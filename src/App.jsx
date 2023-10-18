@@ -1,17 +1,19 @@
 import { useState } from 'react';
 
+let globalID = 0;
 
 function App() {
 
   const [task, setTask] = useState('');
   const [todos, setTodos] = useState([])
+  console.log(globalID)
 
-  let globalID = 0;
   const addTodo = (e) => {
     e.preventDefault()
+    
     setTodos(oldtodos =>{
       setTask("");
-      return [...oldtodos, {todo:task,id:globalID++}]
+      return [...oldtodos, {todo:task,id: globalID++}]
     })
   }
   const handleDelete = (id) => {
@@ -26,10 +28,11 @@ function App() {
     </form>
     <ul>
       {todos.map((item)=>{
-        return <>
-      <li key={item.id}>{item.todo}</li>
+        return <div key={item.id}>
+        
+      <li>{item.todo} {item.id}</li>
       <input type="button" value="Delete" onClick={()=>handleDelete(item.id)}/>
-      </>}
+      </div>}
       )}
     </ul>
     </>
