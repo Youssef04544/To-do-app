@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import TodoList from './components/TodoList';
 
 let globalID = 0;
 
@@ -6,7 +7,7 @@ function App() {
 
   const [task, setTask] = useState('');
   const [todos, setTodos] = useState([])
-  console.log(globalID)
+  
 
   const addTodo = (e) => {
     e.preventDefault()
@@ -26,15 +27,8 @@ function App() {
       <input className='border-2' type="text" value={task} onChange={e=>setTask(e.target.value)} />
       <input type="submit" value="Add todo" />
     </form>
-    <ul>
-      {todos.map((item)=>{
-        return <div key={item.id}>
-        
-      <li>{item.todo} {item.id}</li>
-      <input type="button" value="Delete" onClick={()=>handleDelete(item.id)}/>
-      </div>}
-      )}
-    </ul>
+    {todos.length === 0 && <p>Nothing to do yet.</p>}
+    <TodoList handleDelete={handleDelete} todos={todos}/>
     </>
   );
 }
