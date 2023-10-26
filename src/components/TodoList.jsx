@@ -1,14 +1,17 @@
 import React from 'react'
 
-const TodoList = ({handleDelete, todos}) => {
+const TodoList = ({handleDelete,handleCompleted, todos}) => {
   return (
     <ul className='mt-16 w-full'>
-      {todos.map((item)=>{
-        return <div key={item.id} className='w-full p-2 border-2 border-gray-200 rounded-md'>
+      {todos.map((todo)=>{
+        return (
+      <div key={todo.id} className={'w-full p-2 border-2 border-gray-200 rounded-md flex items-center-center'+`${todo.completed?' opacity-50':''}`}>
         
-      <li className='inline px-2 py-1'>{item.todo} {item.id}</li>
-      <input className='ml-4 px-2 py-1 cursor-pointer' type="button" value="X" onClick={()=>handleDelete(item.id)}/>
-      </div>}
+      <input type="checkbox" name="completed" onChange={()=>handleCompleted(todo.id)} />
+      <li className='inline px-2 py-1'>{todo.task} {todo.id}</li>
+      <input className='ml-4 px-2 py-1 cursor-pointer' type="button" value="X" onClick={()=>handleDelete(todo.id)}/>
+      </div>)
+      }
       )}
     </ul>
   )
