@@ -10,7 +10,7 @@
 
 # production
 /build
-
+/planning.txt
 # misc
 .DS_Store
 .env.local

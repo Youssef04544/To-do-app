@@ -9,6 +9,8 @@ function App() {
   const [todos, setTodos] = useState([]);
   const [isEditing, setIsEditing] = useState({editing:false})
   const inputRef = useRef();
+  const dragItem = useRef();
+  const dragOverItem = useRef();
 
   const addTodo = (e) => {
     e.preventDefault()
@@ -45,6 +47,26 @@ function App() {
     setTask(todo.task)
     setIsEditing({todo, editing:true})
   }
+
+  const handleDragStart = (e,position) => {
+    dragItem.current = position;
+  }
+
+  const handleDragEnter = (e,position) => {
+    dragOverItem.current = position;
+  }
+
+  //Drops the dragged todo on the hovering position and modifies the todos list appropriately
+  const handleDrop = e => {
+    const copyTodos = [...todos];
+    const dragItemContent = copyTodos[dragItem.current];
+    copyTodos.splice(dragItem.current, 1);
+    copyTodos.splice(dragOverItem.current,0, dragItemContent)
+    dragItem.current = null;
+    dragOverItem.current = null;
+    setTodos(copyTodos);
+  }
+
   return (
     <div className='mx-[35%] my-[5%] h-[80vh] bg-white rounded-lg'>
    {/*gotta keep updating the css to center the form and give it the right size and make sure the todolist is well adjusted*/}
@@ -55,7 +77,8 @@ function App() {
       <input className='ml-4 p-2 cursor-pointer rounded-full text-xl center bg-gray-300' type="submit" value="+" />
     </form>
     {todos.length === 0 && <p className='mx-2'>Nothing to do yet.</p>}
-    <TodoList handleDelete={handleDelete} handleEdit={handleEdit} handleCompleted={handleCompleted} todos={todos}/>    
+    <TodoList handleDelete={handleDelete} handleEdit={handleEdit} handleCompleted={handleCompleted} 
+    handleDragStart={handleDragStart} todos={todos} handleDragEnter={handleDragEnter} handleDrop={handleDrop}/>    
 
     </div>
   );
