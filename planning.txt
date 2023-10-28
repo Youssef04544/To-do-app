@@ -1,0 +1,2 @@
+Put some styling so the app doesnt break on different screen size
+Set the icons right
