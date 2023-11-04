@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import TodoList from './components/TodoList';
 
 let globalID = 0;
@@ -6,11 +6,16 @@ let globalID = 0;
 function App() {
 
   const [task, setTask] = useState('');
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')) || []);
   const [isEditing, setIsEditing] = useState({ editing: false })
   const inputRef = useRef();
   const dragItem = useRef();
   const dragOverItem = useRef();
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos])
+
 
   const addTodo = (e) => {
     e.preventDefault()
