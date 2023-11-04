@@ -1,2 +1,4 @@
 Put some styling so the app doesnt break on different screen size
 Set the icons right
+Add localstorage cookies for the todos
+Add clear button
