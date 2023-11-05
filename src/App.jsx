@@ -53,6 +53,10 @@ function App() {
     setIsEditing({ todo, editing: true })
   }
 
+  const handleClear = () => {
+    setTodos([]);
+  }
+
   const handleDragStart = (e, position) => {
     dragItem.current = position;
   }
@@ -74,17 +78,17 @@ function App() {
   //Put a validation on the form input if its empty dont pass an empty task and solve the tasklist size if i add too
   //many tasks it gets out of the border and gets messy
   return (
-    <div className='mx-[35%] my-[5%]  min-h-[80vh] pb-6 px-2 bg-white rounded-lg'>
+    <div className='mx-[35%] my-[5%]  min-h-[80vh] pb-6 px-2 bg-white rounded-lg relative'>
       <h1 className='text-center font-bold text-3xl p-6'>TODO LIST</h1>
       <form className=' w-full flex justify-center p-4 relative' onSubmit={(e) => addTodo(e)}>
         <input className='border-2 w-2/3 p-2 rounded-md' autoFocus ref={inputRef} type="text" placeholder='add a new task...' value={task} onChange={e => setTask(e.target.value)} required minLength={3} />
         {/*Make the button position absolute and size it and color it correctly*/}
         <input className='ml-4 p-2 h-10 w-10 flex justify-center cursor-pointer rounded-full text-xl bg-gray-300 absolute top-4 right-[-15px]' type="submit" value="+" />
       </form>
-      {todos.length === 0 && <p className='mx-2'>Nothing to do yet.</p>}
+      {todos.length === 0 && <p className='m-2'>Nothing to do yet.</p>}
       <TodoList handleDelete={handleDelete} handleEdit={handleEdit} handleCompleted={handleCompleted}
         handleDragStart={handleDragStart} todos={todos} handleDragEnter={handleDragEnter} handleDrop={handleDrop} />
-
+      {todos.length !== 0 && <button className='border-2 bg-gray-400 p-2 rounded-full absolute bottom-2 right-2' onClick={handleClear}>Clear</button>}
     </div>
   );
 }
