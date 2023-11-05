@@ -1,4 +1,3 @@
-Put some styling so the app doesnt break on different screen size
-Set the icons right
-Add localstorage cookies for the todos
-Add clear button
+-Put some styling so the app doesnt break on different screen size : Gonna have to set fixed sized to each screen 
+size i think and different margins also
+-Set the icons right

@@ -78,7 +78,7 @@ function App() {
   //Put a validation on the form input if its empty dont pass an empty task and solve the tasklist size if i add too
   //many tasks it gets out of the border and gets messy
   return (
-    <div className='mx-[35%] my-[5%]  min-h-[80vh] pb-6 px-2 bg-white rounded-lg relative'>
+    <div className='mx-[30%] my-[5%]  min-h-[80vh] min-w-[400px] pb-6 px-2 bg-white rounded-lg relative'>
       <h1 className='text-center font-bold text-3xl p-6'>TODO LIST</h1>
       <form className=' w-full flex justify-center p-4 relative' onSubmit={(e) => addTodo(e)}>
         <input className='border-2 w-2/3 p-2 rounded-md' autoFocus ref={inputRef} type="text" placeholder='add a new task...' value={task} onChange={e => setTask(e.target.value)} required minLength={3} />
@@ -88,7 +88,7 @@ function App() {
       {todos.length === 0 && <p className='m-2'>Nothing to do yet.</p>}
       <TodoList handleDelete={handleDelete} handleEdit={handleEdit} handleCompleted={handleCompleted}
         handleDragStart={handleDragStart} todos={todos} handleDragEnter={handleDragEnter} handleDrop={handleDrop} />
-      {todos.length !== 0 && <button className='border-2 bg-gray-400 p-2 rounded-full absolute bottom-2 right-2' onClick={handleClear}>Clear</button>}
+      {todos.length !== 0 && <button className='border-2 bg-gray-400 p-2 rounded-full absolute bottom-2 right-2 ' onClick={handleClear}>Clear</button>}
     </div>
   );
 }
