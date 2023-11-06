@@ -2,7 +2,7 @@ import React from 'react'
 
 const TodoList = ({ handleDelete, handleCompleted, handleEdit, handleDragStart, handleDragEnter, handleDrop, todos }) => {
   return (
-    <ul className='my-10 w-full'>
+    <ul className='my-10 w-full text-sm md:text-2xl'>
       {todos.map((todo, index) => {
         return (
           <div key={todo.id} className={'cursor-move w-full p-2 my-1 border-[1px] border-gray-200 rounded-md flex items-center' + `${todo.completed ? ' opacity-50' : ''}`}
